@@ -2,6 +2,7 @@ package test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +17,7 @@ public class _02_Validate_Apple_URL {
      */
     public static void main(String[] args) throws InterruptedException {
         //1. Set up driver
-        System.setProperty("webdriver.chrome.driver", "/Users/techglobal/IdeaProjects/selenium_intro/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        WebDriver driver = Driver.getDriver();
 
 
         //2. Validation
@@ -32,7 +30,6 @@ public class _02_Validate_Apple_URL {
         else System.out.println("URL validation failed");
 
         //3. Quit driver
-        Thread.sleep(3000);
-        driver.quit();
+        Driver.quitDriver();
     }
 }
