@@ -27,5 +27,25 @@ public class ValidationUtils {
         else throw new RuntimeException(elementName + " is NOT DISPLAYED");
     }
 
+    public static void validateElementIsEnabled(WebElement element) {
+        if (element.isEnabled()) System.out.println("Element is ENABLED");
+        else throw new RuntimeException("Element is NOT ENABLED");
+    }
+
+    public static void validateElementIsEnabled(WebElement element, String elementName) {
+        if (element.isEnabled()) System.out.println(elementName + " is ENABLED");
+        else throw new RuntimeException(elementName + " is NOT ENABLED");
+    }
+
+    public static void validateElementIsDisplayedAndEnabled(WebElement element) {
+        validateElementIsDisplayed(element);
+        validateElementIsEnabled(element);
+    }
+
+    public static void validateElementIsDisplayedAndEnabled(WebElement element, String elementName) {
+        validateElementIsDisplayed(element, elementName);
+        validateElementIsEnabled(element, elementName);
+    }
+
 
 }
