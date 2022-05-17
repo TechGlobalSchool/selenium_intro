@@ -1,8 +1,11 @@
 package practicesAndHomeworks;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import utilities.Driver;
-import utilities.ValidationUtils;
+
+import static utilities.ValidationUtils.*;
 
 public class FacebookPractice {
     /**
@@ -16,6 +19,7 @@ public class FacebookPractice {
      * 8. Validate “Log In” button is displayed and enabled
      * 9. Validate “Forgot Password?” link is displayed
      * 10. Validate “Create New Account” button is displayed
+     *
      * @param args
      */
 
@@ -24,16 +28,34 @@ public class FacebookPractice {
         WebDriver driver = Driver.getDriver();
 
 
+        try {
+            // get the website
+            driver.get("https://www.facebook.com/");
 
-       try {
-           // get the website
-           driver.get("https://www.facebook.com/");
+            String expectedTitle = "Facebook - log in or sign up";
+            validateTitle(driver, expectedTitle);
 
-           String expectedTitle = "Facebook - Log In or Sign Up";
-           ValidationUtils.validateTitle(driver, expectedTitle);
-       }finally {
-           Driver.quitDriver();
-       }
+            String expectedUrl = "https://www.facebook.com/";
+            validateURL(driver, expectedUrl);
+
+            /*
+            xpath --> //tagName[@attributeName = 'attributeValue']
+            css   --> tagName[attributeName = 'attributeValue']
+             */
+            //                         xpath -->   //img[@class = 'fb_logo _8ilh img']
+            //                         css   -->     img[class = 'fb_logo _8ilh img']
+
+//            WebElement fbLogo = driver.findElement(By.className("fb_logo"));
+//            WebElement fbLogo = driver.findElement(By.cssSelector(".fb_logo"));
+//            WebElement fbLogo = driver.findElement(By.xpath("//img[@class = 'fb_logo _8ilh img']"));
+            WebElement fbLogo = driver.findElement(By.cssSelector("img[class = 'fb_logo _8ilh img']"));
+            validateElementIsDisplayed(fbLogo, "Facebook logo");
+
+
+
+        } finally {
+            Driver.quitDriver();
+        }
 
 
     }
